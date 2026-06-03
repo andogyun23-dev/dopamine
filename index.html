@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도파민 디스토피아 (Dopamine Dystopia: Focus Defense)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="glitch-overlay" class="glitch-overlay"></div>
+    
+    <!-- Onboarding / Audio Init Screen -->
+    <div id="start-overlay" class="overlay">
+        <div class="overlay-content">
+            <h1 class="glitch-text" data-text="DOPAMINE DYSTOPIA">DOPAMINE DYSTOPIA</h1>
+            <p class="subtitle">알고리즘 유혹 방어 체계 (Focus Defense System)</p>
+            <p class="warning-text">⚠️ 경고: 본 게임은 디지털 오버스티뮬레이션을 표현하기 위해 빠른 화면 깜빡임, 글리치 효과 및 고템포의 동적 음향을 포함하고 있습니다.</p>
+            <button id="start-btn" class="glow-btn">SYNC MIND (정신 동기화)</button>
+            <div class="accessibility-panel">
+                <label class="switch-container">
+                    <input type="checkbox" id="accessibility-toggle">
+                    <span class="switch-label">광민감성 및 노이즈 완화 모드 (Reduce Glitches)</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-overlay" class="overlay hidden">
+        <div class="overlay-content">
+            <h1 class="gameover-title glitch-text" data-text="BRAIN ROT DETECTED">BRAIN ROT DETECTED</h1>
+            <p class="gameover-reason">주의력 완전 잠식 (스마트폰 중독 판정)</p>
+            <div class="stats-summary">
+                <p>버틴 시간: <span id="final-time" class="font-mono">0.00</span>초</p>
+                <p>차단된 유혹: <span id="final-blocks" class="font-mono">0</span>개</p>
+                <p>도파민 축적도: <span id="final-dopamine-percentage" class="font-mono">100</span>%</p>
+                <p>최종 등급: <span id="final-rating" class="rating-text">F</span></p>
+            </div>
+            <button id="retry-btn" class="glow-btn">REBOOT CONSCIOUSNESS (의식 재부팅)</button>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <main class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <h1 class="logo glitch-text" data-text="DOPAMINE DYSTOPIA">DOPAMINE DYSTOPIA</h1>
+                <span class="version-tag">AESTHETIC CRITIQUE v1.0</span>
+            </div>
+            <div class="global-controls">
+                <button id="audio-mute-btn" class="icon-btn" title="사운드 켜기/끄기">🔊</button>
+                <button id="accessibility-btn" class="icon-btn" title="광민감성 필터 전환">👁️</button>
+            </div>
+        </header>
+
+        <!-- Main Game Section (Centered) -->
+        <section class="game-panel glass-panel">
+            <!-- HUD Status Bars -->
+            <div class="hud-top">
+                <div class="hud-item mental-status">
+                    <div class="hud-label">주의력 게이지 (Mental Gauge)</div>
+                    <div class="progress-bar-outer">
+                        <div id="mental-bar" class="progress-bar-inner mental-color" style="width: 100%;"></div>
+                        <span id="mental-value" class="bar-value">100%</span>
+                    </div>
+                </div>
+                <div class="hud-item dopamine-status">
+                    <div class="hud-label">도파민 포화도 (Dopamine Overload)</div>
+                    <div class="progress-bar-outer">
+                        <div id="dopamine-bar" class="progress-bar-inner dopamine-color" style="width: 0%;"></div>
+                        <span id="dopamine-value" class="bar-value">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canvas Wrapper -->
+            <div class="canvas-container">
+                <canvas id="game-canvas"></canvas>
+                <div class="canvas-glitch-effects"></div>
+            </div>
+
+            <!-- HUD Stats Bar -->
+            <div class="hud-bottom">
+                <div class="stat-box">
+                    <div class="stat-title">생존 시간</div>
+                    <div id="timer-val" class="stat-value font-mono">0.00s</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-title">차단 횟수</div>
+                    <div id="blocks-val" class="stat-value font-mono">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-title">자극 빈도 (난이도)</div>
+                    <div id="diff-val" class="stat-value font-mono">1.0x</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information details (Artist Statement & Instructions) positioned below the game screen -->
+        <div class="details-grid">
+            <!-- Left bottom: Artist Statement -->
+            <section class="info-panel glass-panel statement-panel">
+                <div class="panel-header">
+                    <h2>ARTIST STATEMENT</h2>
+                </div>
+                <div class="artist-statement">
+                    <blockquote class="quote-card">
+                        "우리는 알고리즘의 공격 속에서 우리의 주의력을 얼마나 낭비하고 있는가?"
+                    </blockquote>
+                    <p>현대인은 매일 아침 눈을 떠서 잠들 때까지 숏폼 콘텐츠와 SNS 알림이라는 강력한 도파민의 공격을 받습니다. 본 작품은 미디어 알고리즘이 인간의 정신을 잠식해 가는 과정을 시각적, 체각적 게임 경험으로 재현한 예술공학적 시도입니다.</p>
+                    <p>사용자는 화면 중앙의 '이성(Mental)'을 지키기 위해 사방에서 날아오는 디지털 유혹을 쳐내야 합니다. 아이러니하게도 유혹을 방어하지 못해 중독될수록 화면은 더욱 화려한 네온 빛과 빠른 템포로 유저를 시각적으로 만족시킵니다. 이는 현대 소셜 미디어가 인간의 뇌를 도파민으로 중독시키는 메커니즘을 풍자한 것입니다. 기술을 통해 현대 사회의 심리적 단면을 직관적인 규칙으로 시각화하고자 했습니다.</p>
+                </div>
+            </section>
+            
+            <!-- Right bottom: System instructions -->
+            <section class="info-panel glass-panel instructions-panel-container">
+                <div class="panel-header">
+                    <h2>SYSTEM MANUAL (의식 보호 매뉴얼)</h2>
+                </div>
+                <div class="instructions-panel">
+                    <ul>
+                        <li><span class="key-badge">마우스 조작</span>: 방어막(Shield)이 마우스 방향을 따라 회전합니다. (화면 외곽 조작 지원)</li>
+                        <li><span class="key-badge">Space</span>: 게임 일시정지 (PAUSE) / 재개</li>
+                        <li>방어막을 조작해 사방에서 중심을 향해 날아오는 유혹 발사체(SNS 로고들)를 정확히 막으세요.</li>
+                        <li>방어막에 닿은 유혹은 튕겨 나가고, 막지 못하면 중심의 의식을 강타하여 <strong class="text-danger">주의력(Attention)</strong>이 소모되며 <strong class="text-warning">도파민 수치</strong>가 폭등합니다.</li>
+                        <li>의식 소모가 극에 달해 주의력이 0%가 되면 뇌세포 기능이 중지(Game Over)됩니다.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        
+        <footer class="app-footer">
+            <p>© 2026 Dopamine Dystopia: Focus Defense. Built with HTML5 Canvas & Web Audio.</p>
+        </footer>
+    </main>
+
+    <!-- Game Scripts -->
+    <script src="audio.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
